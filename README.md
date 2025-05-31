@@ -1,72 +1,65 @@
-# 🚗 Car Type Classification 
+# 🚗 Car Type Classification MLOps Dashboard
 
-## 📘 Project Overview
+A professional Flask-based MLOps dashboard to monitor real-time AI predictions for car type classification. This project provides an interactive UI, real-time model insights, and fully styled charts and tables using Chart.js and Bootstrap 5.
 
-This project is a **deep learning-powered car body type classifier** integrated into a Flask web application with a fully functional MLOps-style dashboard.
+---
 
-**Objectives:**
-- Classify car images by body type (e.g., SUV, Coupe, Pickup) using a trained CNN model.
-- Provide a user-friendly interface for uploading images and receiving predictions.
-- Visualize predictions, model usage, and performance metrics in real-time via interactive charts.
-- Enable admin-only access to a secure monitoring dashboard for insights and reporting.
+## 📌 Project Overview
+
+This dashboard is designed to visualize and manage AI predictions in real-time. It allows admins to:
+
+- Monitor the number and types of car predictions.
+- Analyze model behavior with clean, professional graphs.
+- Filter predictions by date and car type.
+- View all prediction entries in an organized, searchable table.
 
 ---
 
 ## 📊 Dataset
 
-**Source:** The dataset used for training the classification model is a curated collection of labeled car images scraped from various open datasets and online repositories.
+- **Source**: Custom labeled car images uploaded by users.
+- **Structure**:
+  - `image`: uploaded car image.
+  - `label`: predicted car type.
+  - `timestamp`: prediction date and time.
+  - `duration`: model inference time in seconds.
 
-**Classes Included:**
-- Convertible  
-- Coupe  
-- SUV  
-- Pickup  
-- Minivan  
-- Van  
-- Hatchback  
-
-**Dataset Structure:**
-- Each class has ~500–1000 images.
-- Images were resized to \(224 \times 224\) and normalized.
-- Class labels were encoded and one-hot encoded for training.
+This data is stored dynamically via a Flask backend and used to update the dashboard in real-time.
 
 ---
 
-## 🔄 Pipeline Steps
+## ⚙️ Pipeline Steps
 
-### 1. **Data Preprocessing**
-- Resized images to `(224, 224, 3)` to match ResNet50 input requirements.
-- Applied normalization using ImageNet mean/standard deviation.
-- Used `ImageDataGenerator` for training/validation splits and augmentation (rotation, zoom, shift).
+### 1. Data Preprocessing
+- Images are resized and normalized before feeding into the model.
+- Metadata (timestamp and duration) is stored alongside predictions.
 
-### 2. **Feature Engineering**
-- Pretrained ResNet50 (without top layer) used as a feature extractor.
-- Added custom dense layers with Dropout and ReLU activation.
-- Output layer: softmax for multi-class classification.
+### 2. Feature Engineering
+- Additional metadata such as formatted time, top classes, and frequency stats are extracted for plotting and filtering.
 
-### 3. **Model Training**
-- Optimizer: Adam  
-- Loss: categorical crossentropy  
-- Epochs: 10–20  
-- Metrics: Accuracy, Validation Accuracy  
-- Trained using Keras with TensorFlow backend.
+### 3. Model Inference
+- A pre-trained CNN or custom classifier is used to predict the car type.
+- Prediction time is measured for performance tracking.
 
-### 4. **Model Evaluation**
-- Achieved >90% accuracy on the test set.
-- Evaluated with confusion matrix and classification report.
-- Saved final model as: `resnet50_car_body_type_model.h5`.
+### 4. Visualization & Evaluation
+- **Charts**: Four main Chart.js visualizations:
+  - Car Type Distribution
+  - Predictions Over Time
+  - Top 5 Car Types
+  - Prediction Time Distribution
+- **KPIs**: Metrics at the top show total predictions, unique car types, top class, and latest prediction time.
 
-### 5. **Deployment**
-- Loaded the model using Keras in a Flask backend.
-- Developed a secure admin login system.
-- Deployed using local Flask server; deployable to cloud (e.g., Heroku, AWS).
+### 5. Deployment
+- Frontend: HTML + Bootstrap 5 + Chart.js
+- Backend: Flask + SQLite
+- Admin interface for monitoring live uploads and predictions.
 
 ---
 
-## ⚙️ Setup Instructions
+## 🛠️ Setup Instructions
 
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/your-username/car-type-classifier.git
-cd car-type-classifier
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/car-type-classifier-dashboard.git
+   cd car-type-classifier-dashboard
+  
