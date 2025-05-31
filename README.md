@@ -56,10 +56,5 @@ This data is stored dynamically via a Flask backend and used to update the dashb
 
 ---
 
-## 🛠️ Setup Instructions
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/your-username/car-type-classifier-dashboard.git
-   cd car-type-classifier-dashboard
   
